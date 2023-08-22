@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   selectDropElement = document.querySelector("#breed-dropdown");
   displayBreed = document.querySelector("#dog-breeds");
   displayBreed.setAttribute("style", "list-style-type:none");
+  li = document.querySelector("li");
 
   imgcontainer = document.querySelector("#dog-image-container");
   async function dogFetcher() {
@@ -36,5 +37,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
   }
+  displayBreed.addEventListener("click", (e) => {
+    e.target.style.color = "red";
+  });
   dogFetcher();
 });
