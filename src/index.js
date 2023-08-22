@@ -26,14 +26,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     selectDropElement.addEventListener("change", (e) => {
       e.preventDefault();
-      Object.keys(breed).filter((pet, index) => {
+      displayBreed.innerHTML = " ";
+      Object.keys(breed).forEach((pet, index) => {
         if (selectDropElement.value === pet.charAt()) {
           liElement = document.createElement("li");
-          liElement.textContent = pet;
-          liElement.setAttribute("value", index);
-          if (liElement.getAttribute("value") !== index) {
-          }
-          displayBreed.appendChild(liElement);
+          liElement.innerText = pet;
+          displayBreed.append(liElement);
         }
       });
     });
