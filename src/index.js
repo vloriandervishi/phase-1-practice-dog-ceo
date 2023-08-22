@@ -4,6 +4,8 @@ const imgUrl = "https://dog.ceo/api/breeds/image/random/4";
 document.addEventListener("DOMContentLoaded", async () => {
   selectDropElement = document.querySelector("#breed-dropdown");
   displayBreed = document.querySelector("#dog-breeds");
+  displayBreed.setAttribute("style", "list-style-type:none");
+
   imgcontainer = document.querySelector("#dog-image-container");
   async function dogFetcher() {
     const response = await fetch(breedUrl);
@@ -24,19 +26,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     selectDropElement.addEventListener("change", (e) => {
       e.preventDefault();
-      console.log(selectDropElement.value);
-      Object.keys(breed).forEach((pet) => {
+      Object.keys(breed).filter((pet, index) => {
         if (selectDropElement.value === pet.charAt()) {
-          showcaseBreed(pet);
+          liElement = document.createElement("li");
+          liElement.textContent = pet;
+          liElement.setAttribute("value", index);
+          if (liElement.getAttribute("value") !== index) {
+          }
+          displayBreed.appendChild(liElement);
         }
       });
     });
   }
-  function showcaseBreed(pet, image) {
-    liElement = document.createElement("li");
-    liElement.textContent = pet;
-    displayBreed.prepend(liElement);
-  }
-
   dogFetcher();
 });
